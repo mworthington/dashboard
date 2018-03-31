@@ -13,9 +13,13 @@ import { FuseNavigationService } from './core/components/navigation/navigation.s
 import { FuseSampleModule } from './main/content/sample/sample.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthGuard } from './auth/auth.guard';
+import { AdminGuard } from './auth/admin.guard';
 import { AuthService } from './auth/auth.service';
+import { FuseFakeDbService } from './fuse-fake-db/fuse-fake-db.service';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 const appRoutes: Routes = [
+
     {
         path        : 'apps',
         loadChildren: './main/content/apps/apps.module#FuseAppsModule'
@@ -26,7 +30,7 @@ const appRoutes: Routes = [
     },
     {
         path      : '**',
-        redirectTo: 'auth/login'
+        redirectTo: 'apps/dashboards/analytics'
     }
 ];
 
@@ -41,11 +45,16 @@ const appRoutes: Routes = [
         RouterModule.forRoot(appRoutes),
         SharedModule,
         TranslateModule.forRoot(),
+        InMemoryWebApiModule.forRoot(FuseFakeDbService, {
+            delay             : 0,
+            passThruUnknownUrl: true
+        }),
         FuseMainModule,
         FuseSampleModule,
     ],
     providers   : [
         AuthGuard,
+        AdminGuard,
         AuthService,
         FuseSplashScreenService,
         FuseConfigService,

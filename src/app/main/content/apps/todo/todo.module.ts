@@ -8,48 +8,75 @@ import { FuseTodoListItemComponent } from './todo-list/todo-list-item/todo-list-
 import { FuseTodoListComponent } from './todo-list/todo-list.component';
 import { FuseTodoDetailsComponent } from './todo-details/todo-details.component';
 
+import {AuthGuard} from '../../../../auth/auth.guard';
+import {AdminGuard} from '../../../../auth/admin.guard';
+
 const routes: Routes = [
     {
         path     : 'all',
         component: FuseTodoComponent,
         resolve  : {
             todo: TodoService
-        }
+        },
+        canActivate: [
+            AuthGuard,
+            AdminGuard
+          ],
     },
     {
         path     : 'all/:todoId',
         component: FuseTodoComponent,
         resolve  : {
             todo: TodoService
-        }
+        },
+        canActivate: [
+            AuthGuard,
+            AdminGuard
+          ],
     },
     {
         path     : 'tag/:tagHandle',
         component: FuseTodoComponent,
         resolve  : {
             todo: TodoService
-        }
+        },
+        canActivate: [
+            AuthGuard,
+            AdminGuard
+          ],
     },
     {
         path     : 'tag/:tagHandle/:todoId',
         component: FuseTodoComponent,
         resolve  : {
             todo: TodoService
-        }
+        },
+        canActivate: [
+            AuthGuard,
+            AdminGuard
+          ],
     },
     {
         path     : 'filter/:filterHandle',
         component: FuseTodoComponent,
         resolve  : {
             todo: TodoService
-        }
+        },
+        canActivate: [
+            AuthGuard,
+            AdminGuard
+          ],
     },
     {
         path     : 'filter/:filterHandle/:todoId',
         component: FuseTodoComponent,
         resolve  : {
             todo: TodoService
-        }
+        },
+        canActivate: [
+            AuthGuard,
+            AdminGuard
+          ],
     },
     {
         path      : '**',

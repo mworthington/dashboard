@@ -8,13 +8,18 @@ import { FuseClientAAnalyticsDashboardComponent } from './client-a-analytics.com
 import { AnalyticsDashboardService } from './../analytics/analytics.service';
 import { FuseWidgetModule } from '../../../../../core/components/widget/widget.module';
 
+import {AuthGuard} from '../../../../../auth/auth.guard';
+
 const routes: Routes = [
     {
-        path     : 'client-a-analytics-dashboard',
+        path     : '**',
         component: FuseClientAAnalyticsDashboardComponent,
         resolve  : {
             data: AnalyticsDashboardService
-        }
+        },
+        canActivate: [
+            AuthGuard
+          ],
     }
 ];
 

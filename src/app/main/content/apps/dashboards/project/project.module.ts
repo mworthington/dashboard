@@ -7,13 +7,18 @@ import { ProjectDashboardService } from './project.service';
 import { FuseWidgetModule } from '../../../../../core/components/widget/widget.module';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
+import {AuthGuard} from '../../../../../auth/auth.guard';
+
 const routes: Routes = [
     {
         path     : '**',
         component: FuseProjectDashboardComponent,
         resolve  : {
             data: ProjectDashboardService
-        }
+        },
+        canActivate: [
+            AuthGuard
+          ],
     }
 ];
 

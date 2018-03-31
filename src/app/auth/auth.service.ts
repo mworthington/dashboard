@@ -81,7 +81,7 @@ export class AuthService {
       this._redirect();
       return;
     }
-    this.router.navigate(['pages/auth/login']);
+    this.router.navigate(['/pages/auth/login']);
   }
 
   private _getProfile(authResult) {
@@ -92,7 +92,7 @@ export class AuthService {
         this._setSession(authResult, profile);
         this._redirect();
       } else if (err) {
-        this.router.navigate(['pages/auth/login']);
+        this.router.navigate(['/pages/auth/login']);
         this._clearRedirect();
         console.error(`Error authenticating: ${err.error}`);
       }
@@ -188,7 +188,7 @@ export class AuthService {
         return;
       }
       if (err) {
-        this.router.navigate(['/pages/auth/login']);
+        this.router.navigate(['pages/auth/login']);
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
@@ -200,5 +200,12 @@ export class AuthService {
       return this.userProfile.name;
     }
     return 'Not logged in';
+  }
+
+  public getIsAdmin(): string {
+    if (this.isAdmin) {
+      return ' (admin)';
+    }
+    return '';
   }
 }

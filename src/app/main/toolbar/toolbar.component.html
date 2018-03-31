@@ -15,7 +15,7 @@
 
             <div fxLayout="row" fxLayoutAlign="start center" *ngIf="horizontalNav">
                 <div class="logo ml-16">
-                    <img class="logo-icon" src="assets/images/logos/fuse.svg">
+                    <img class="logo-icon" src="assets/images/logos/client-portal-logo.png">
                 </div>
             </div>
 
@@ -33,6 +33,9 @@
                     <img class="avatar" src="assets/images/avatars/profile.jpg">
                     <span class="username mr-12" fxHide fxShow.gt-sm >
                         {{auth.getUsername()}}
+                    </span>
+                    <span class="username mr-12" fxHide fxShow.gt-sm >
+                        {{auth.getIsAdmin()}}
                     </span>
                     <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
                 </div>
